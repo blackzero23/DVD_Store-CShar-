@@ -12,31 +12,28 @@ namespace DVD_Store
         static void Main(string[] args)
         {
             //가게 오픈
-            var dvdManager = new DVDManager();
-            var menu = new Menu();// 스태틱으로 만들까 고민.
-            //메뉴 출력
+            var dvdManager = new DVDManager();        
+          
             while(true)
             {
+                //메뉴 출력
                 Menu.MainMenu();
                 Console.Write(">> ");
+                //메뉴 입력
                 var num = int.Parse(Console.ReadLine());
 
-                if (num == MainMenu.Customer) dvdManager.CustomerAccess();
-                else if (num == MainMenu.DVD) dvdManager.DVDAccess();
-                else if (num == MainMenu.Rental) dvdManager.RentalAccess();
-                else if (num == MainMenu.Exit) Environment.Exit(0);
+                if (num == (int)MainMenu.Customer) dvdManager.CustomerAccess();  //1. 고객
+                else if (num == (int)MainMenu.DVD) dvdManager.DVDAccess(); //2.DVD
+                else if (num == (int)MainMenu.Rental) dvdManager.RentalAccess(); //3.대여
+                else if (num == (int)MainMenu.Exit) break; //4.종료
 
                 Console.Clear();
             }
-            //메뉴 입력
+
+            Console.Clear();
+            Console.WriteLine("프로그램을 종료 합니다!");
+          
             
-            //1. 고객
-            //고객 메뉴 출력.
-            //2. DVD
-            //DVD 메뉴 출력.
-            //3. 대여
-            //대여 메뉴 출력.
-            //4. 종료
         }
     }
 }
