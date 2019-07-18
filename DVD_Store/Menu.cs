@@ -10,13 +10,24 @@ namespace DVD_Store
     {
         public static void MainMenu()
         {
+            Console.Clear(); //화면 깨끗하게 만들기.
             Console.WriteLine("---메뉴---");
             Console.WriteLine("1.고객 관리");
             Console.WriteLine("2.DVD 관리");
             Console.WriteLine("3.대여 관리");
-            Console.WriteLine("4.종 료");ㅣ
+            Console.WriteLine("4.종 료");
         }
 
-
+        public static void CusMainMenu()
+        {
+            Console.Clear(); //화면 깨끗하게 만들기.
+            Console.WriteLine("---메뉴---");
+            Console.WriteLine("1.회원 가입");
+            Console.WriteLine("2.회원 정보");
+            Console.WriteLine("3.회원 수정");
+            Console.WriteLine("4.회원 삭제");
+            Console.WriteLine("5.전체 회원 출력.");
+            Console.WriteLine("6.메인 메뉴");
+        }
     }
 }

@@ -47,9 +47,9 @@
     <Compile Include="Data\DVDData.cs" />
     <Compile Include="Data\RentalData.cs" />
     <Compile Include="DVDManager.cs" />
-    <Compile Include="Entity\Customer.cs" />
-    <Compile Include="Entity\DVD.cs" />
-    <Compile Include="Entity\Rental.cs" />
+    <Compile Include="Entities\Customer.cs" />
+    <Compile Include="Entities\DVD.cs" />
+    <Compile Include="Entities\Rental.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

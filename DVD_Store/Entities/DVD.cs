@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DVD_Store.Entity
+namespace DVD_Store.Entities
 {
     public class DVD
     {
