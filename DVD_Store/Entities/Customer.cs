@@ -14,16 +14,15 @@ namespace DVD_Store.Entities
 
         public bool IsRegistCustomer(List<Customer> customers, string cusId)
         {
-            bool cus;
+            //cus = customers.Select(x => x.ID).Where(x => x.Equals(cusId)).Any();
 
-            cus = customers.Select(x => x.ID).Where(x => x.Equals(cusId)).Any();
-            
+            var cus = customers.Select(x => x.ID).Any(x => x.Equals(cusId));
+
             return cus;
         }
 
         public override string ToString()
         {
-            string ment = null;
             return $"ID : {ID}\nName : {Name}\nPhoneNum : {PhoneNum}";
         }
 
