@@ -19,7 +19,7 @@ namespace DVD_Store.Data
             Console.WriteLine("---DVD등록---");
             while (true)
             {
-                Console.WriteLine("등록 번호 : ");
+                Console.Write("등록 번호 : ");
                 var dvdNum = Console.ReadLine();
                 //null 체크 해야됨.
                 if (DVD.IsRegistDVD(_dvds,dvdNum))
@@ -30,12 +30,12 @@ namespace DVD_Store.Data
                 }
 
                 dvd.DVDNum = dvdNum;
-
+               
                 break;
             }
 
 
-            Console.WriteLine("DVD 이름 : ");
+            Console.Write("DVD 이름 : ");
             var name = Console.ReadLine();
             dvd.Name = name;
 
@@ -46,21 +46,66 @@ namespace DVD_Store.Data
             _dvds.Add(dvd);
 
             Console.WriteLine("DVD 등록 완료.");
+            Console.ReadLine();
         }
 
         public void DVDSearch()
         {
-            throw new NotImplementedException();
+            DVD dvd = new DVD();
+            Console.Write("조회 할 DVD 등록 번호 : ");
+            var dvdNum = Console.ReadLine();
+            //dvd = _dvds.Select(x => x).Where(x => x.DVDNum.Equals(dvdNum)).FirstOrDefault();
+            
+            dvd = _dvds.Select(x => x).FirstOrDefault(x => x.DVDNum.Equals(dvdNum));
+            if (dvd == null)
+            {
+                Console.WriteLine("등록되어있지 않습니다.");
+                return;
+            }
+
+            Console.WriteLine(dvd);
+            Console.ReadLine();
         }
 
+        /// <summary>
+        /// 현재 DVD 제목만 수정 가능.
+        /// </summary>
         public void DVDUpdate()
         {
-            throw new NotImplementedException();
+            DVD dvd = new DVD();
+            Console.Write("수정 할 DVD 등록번호 : ");
+            var dvdNum = Console.ReadLine();
+            
+            dvd = _dvds.Select(x => x).FirstOrDefault(x => x.DVDNum.Equals(dvdNum));
+            if (dvd == null)
+            {
+                Console.WriteLine("등록되어있지 않습니다.");
+                return;
+            }
+
+            string dvdName = Console.ReadLine();
+
+            dvd.Name = dvdName;
+            Console.WriteLine("수정 완료!");
+            Console.ReadLine();
         }
 
         public void DVDDelete()
         {
-            throw new NotImplementedException();
+            DVD dvd = new DVD();
+            Console.Write("삭제 할 DVD 등록번호 : ");
+            var dvdNum = Console.ReadLine();
+            
+            dvd = _dvds.Select(x => x).FirstOrDefault(x => x.DVDNum.Equals(dvdNum));
+            if (dvd == null)
+            {
+                Console.WriteLine("등록되어있지 않습니다.");
+                return;
+            }
+
+            _dvds.Remove(dvd);
+            Console.WriteLine("해당 DVD 제거 완료!");
+            Console.ReadLine();
         }
 
         public void DVDPrintAll()

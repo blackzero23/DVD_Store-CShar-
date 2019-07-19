@@ -28,8 +28,9 @@ namespace DVD_Store.Entities
         {
             Console.WriteLine("---DVD 장르 선택---");
             var genres = Enum.GetValues(DVDGenres.Action.GetType());
+            int i = 0;
             foreach (var genre in genres)
-                Console.WriteLine(genre);
+                Console.WriteLine($"{++i}.{genre}");
             int genreNum = int.Parse(Console.ReadLine());
 
             if (genreNum == (int) DVDGenres.Romantic)
@@ -47,7 +48,7 @@ namespace DVD_Store.Entities
         public override string ToString()
         {
             string rental = RentalState ? "대여가능" : "대여중";
-            string ment = $"--- DVD정보 ---\n 등록번호 : {DVDNum}\n이름 : {Name}\n 장르 : {Genre}\n대여상태 : {rental}";
+            string ment = $"--- DVD정보 ---\n1. 등록번호 :  {DVDNum}\n2. 이름 : {Name}\n3. 장르 : {Genre}\n4. 대여상태 : {rental}";
             return ment;
         }
 
