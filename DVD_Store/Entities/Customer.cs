@@ -20,20 +20,21 @@ namespace DVD_Store.Entities
 
             return cus;
         }
+        public Customer GetCustomer(List<Customer> customers, string cusId)
+        {
+            var query = from x in customers
+                where x.ID.Equals(cusId)
+                select x;
+
+            return query.FirstOrDefault();
+
+        }
 
         public override string ToString()
         {
             return $"ID : {ID}\nName : {Name}\nPhoneNum : {PhoneNum}";
         }
 
-        public Customer GetCustomer(List<Customer> customers, string cusId)
-        {
-            var query = from x in customers
-                        where x.ID.Equals(cusId)
-                        select x;
-
-            return query.FirstOrDefault();
-
-        }
+       
     }
 }

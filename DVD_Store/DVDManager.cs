@@ -8,15 +8,19 @@ using System.Threading.Tasks;
 
 namespace DVD_Store
 {
-    enum CusMenu {CusAdd,CusInfo,CusUpdate,CusDelete,CusPrintAll };
+    enum CusMenu {CusAdd = 1,CusInfoSearch,CusUpdate,CusDelete,CusPrintAll,MainMenu }
+    enum DVDMenu {DVDAdd = 1,DVDInfoSearch,DVDUpdate,DVDDelete,DVDPrintAll,MainMenu}
+    
     public class DVDManager
     {
        // private List<Customer> cusTomers = new List<Customer>(); //고객 관리.
-        private CustomerData customerData = new CustomerData(); //고객 관리.
-        private List<DVD> dvds = new List<DVD>(); //DVD관리.
-        private List<Rental> rentals = new List<Rental>();//대여관리.
-
-
+       //private List<DVD> dvds = new List<DVD>(); //DVD관리.
+       //private List<Rental> rentals = new List<Rental>();//대여조회 관리.
+       
+       private CustomerData customerData = new CustomerData(); //고객 관리.
+       private DVDData dvdData = new DVDData();//DVD관리
+       private RentalData rentalData = new RentalData();//대여조회 관리
+       
         public void CustomerAccess()
         {
 
@@ -27,24 +31,23 @@ namespace DVD_Store
                 Menu.CusMainMenu();
                 //고객 메뉴 입력
                 var num = int.Parse(Console.ReadLine());
-
                 //1. 회원가입
-                //2. 회원정보
-                //3. 회원수정 우선은 폰 번호만
-                //4. 회원삭제
-                //5. 전체 회원 출력.
-                //6. 메인 메뉴.
-                if (num == 1)
+                if (num == (int)CusMenu.CusAdd)
                     customerData.AddCustomer();
-                else if (num == 2)
+                //2. 회원정보
+                else if (num == (int)CusMenu.CusInfoSearch)
                     customerData.SearchCustomer();
-                else if (num == 3)
+                //3. 회원수정 우선은 폰 번호만
+                else if (num == (int)CusMenu.CusUpdate)
                     customerData.UpdateCustomer();
-                else if (num == 4)
+                //4. 회원삭제
+                else if (num == (int)CusMenu.CusDelete)
                     customerData.DeleteCustomer();
-                else if (num == 5)
+                //5. 전체 회원 출력.
+                else if (num == (int)CusMenu.CusPrintAll)
                     customerData.PrintAllCusInfo();
-                else if (num == 6)
+                //6. 메인 메뉴.
+                else if (num == (int)CusMenu.MainMenu)
                     break;
                 
             }
@@ -52,7 +55,32 @@ namespace DVD_Store
 
         public void DVDAccess()
         {
-            throw new NotImplementedException();
+            while (true)
+            {
+                //DVD 메뉴 오픈
+                Menu.DVDMainMenu();
+                //DVD 메뉴 입력
+                Console.Write(">> ");
+                var num = int.Parse(Console.ReadLine());
+                //1.DVD 등록
+                if (num == (int) DVDMenu.DVDAdd)
+                    dvdData.DVDAdd();
+                //2.DVD 조회
+                else if (num == (int) DVDMenu.DVDInfoSearch)
+                    dvdData.DVDSearch();
+                //3.DVD 수정
+                else if (num == (int) DVDMenu.DVDUpdate)
+                    dvdData.DVDUpdate();
+                //4.DVD 삭제
+                else if (num == (int) DVDMenu.DVDDelete)
+                    dvdData.DVDDelete();
+                //5.전체 DVD 정보 출력
+                else if (num == (int) DVDMenu.DVDPrintAll)
+                    dvdData.DVDPrintAll();
+                //6. 메인메뉴
+                else if (num == (int) DVDMenu.MainMenu)
+                    break;
+            }
         }
 
         public void RentalAccess()
