@@ -46,8 +46,9 @@ namespace DVD_Store.Entities
 
         public override string ToString()
         {
-            string ment = $"--- DVD정보 ---\n 등록번호 : {DVDNum}\n 이름 : {}"
-            return base.ToString();
+            string rental = RentalState ? "대여가능" : "대여중";
+            string ment = $"--- DVD정보 ---\n 등록번호 : {DVDNum}\n이름 : {Name}\n 장르 : {Genre}\n대여상태 : {rental}";
+            return ment;
         }
 
         public static bool IsRegistDVD(List<DVD> dvds,string dvdNum)
