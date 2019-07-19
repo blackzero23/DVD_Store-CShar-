@@ -1,19 +1,19 @@
-﻿using System;
+﻿using DVD_Store.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DVD_Store.Entities;
 
 namespace DVD_Store.Data
 {
-    
+
 
     public class DVDData
     {
+      
+
         private List<DVD> _dvds = new List<DVD>(); 
         
-        public void DVDAdd()
+        public void AddDvd()
         {
             DVD dvd = new DVD();
             Console.WriteLine("---DVD등록---");
@@ -49,7 +49,7 @@ namespace DVD_Store.Data
             Console.ReadLine();
         }
 
-        public void DVDSearch()
+        public void SearchDvd()
         {
             DVD dvd = new DVD();
             Console.Write("조회 할 DVD 등록 번호 : ");
@@ -70,7 +70,7 @@ namespace DVD_Store.Data
         /// <summary>
         /// 현재 DVD 제목만 수정 가능.
         /// </summary>
-        public void DVDUpdate()
+        public void UpdateDvd()
         {
             DVD dvd = new DVD();
             Console.Write("수정 할 DVD 등록번호 : ");
@@ -90,7 +90,7 @@ namespace DVD_Store.Data
             Console.ReadLine();
         }
 
-        public void DVDDelete()
+        public void DeleteDvd()
         {
             DVD dvd = new DVD();
             Console.Write("삭제 할 DVD 등록번호 : ");
@@ -108,12 +108,17 @@ namespace DVD_Store.Data
             Console.ReadLine();
         }
 
-        public void DVDPrintAll()
+        public void PrintAllDvd()
         {
             foreach (var dvd in _dvds)
             {
                 Console.WriteLine(dvd);
             }
+        }
+
+        public ref List<DVD> GetDvds()
+        {
+            return ref _dvds;
         }
     }
 }

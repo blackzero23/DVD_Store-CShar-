@@ -148,5 +148,10 @@ namespace DVD_Store.Data
             }
             Console.ReadLine();
         }
+
+        public List<Customer> GetCustomers()
+        {
+            return _customers;
+        }
     }
 }

@@ -38,8 +38,15 @@ namespace DVD_Store
             Console.WriteLine("2.DVD 정보 조회");
             Console.WriteLine("3.DVD 수정");
             Console.WriteLine("4.DVD 삭제");
-            Console.WriteLine("5.전체 DVD 정보 출력.");
-            Console.WriteLine("6.메인 메뉴");
+            Console.WriteLine("5.DVD 대여");
+            Console.WriteLine("6.DVD 반납");
+            Console.WriteLine("7.전체 DVD 정보 출력.");
+            Console.WriteLine("8.메인 메뉴");
+        }
+
+        public static void RentalMainMenu()
+        {
+            throw new NotImplementedException();
         }
     }
 }

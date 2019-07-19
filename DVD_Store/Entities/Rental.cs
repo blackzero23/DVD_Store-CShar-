@@ -9,7 +9,11 @@ namespace DVD_Store.Entities
     public class Rental
     {
         public string CusId { get; set; }
-        public string DVDNum { get; set; }
-        public DateTime RentDate { get; set; }
+
+        public string DvdNum { get; set; }
+        
+        public string DvdName { get; set; }
+
+        public DateTime RentalDate { get; set; }
     }
 }

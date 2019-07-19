@@ -8,8 +8,24 @@ using System.Threading.Tasks;
 
 namespace DVD_Store
 {
-    enum CusMenu {CusAdd = 1,CusInfoSearch,CusUpdate,CusDelete,CusPrintAll,MainMenu }
-    enum DVDMenu {DVDAdd = 1,DVDInfoSearch,DVDUpdate,DVDDelete,DVDPrintAll,MainMenu}
+    enum CusMenu 
+    {CusAdd = 1,CusInfoSearch,CusUpdate,CusDelete,CusPrintAll,MainMenu }
+    enum DVDMenu 
+    {
+        AddDvd = 1,SearchDvdInfo,
+        UpdateDVd,
+        DeleteDvd,RentalDvd,
+        PrintAllDvd, GetBackDvd,MainMenu
+    }
+
+    enum RentalMenu
+    {
+        Rental,
+        GetBackDvd,
+        SearchDVDRentalInfo,
+        SearchCusRentalInfo,
+        MainMenu
+    }
     
     public class DVDManager
     {
@@ -19,7 +35,9 @@ namespace DVD_Store
        
        private CustomerData customerData = new CustomerData(); //고객 관리.
        private DVDData dvdData = new DVDData();//DVD관리
-       private RentalData rentalData = new RentalData();//대여조회 관리
+       private RentalData rentalData 
+           = new RentalData();//대여조회 관리
+       
        
         public void CustomerAccess()
         {
@@ -63,20 +81,21 @@ namespace DVD_Store
                 Console.Write(">> ");
                 var num = int.Parse(Console.ReadLine());
                 //1.DVD 등록
-                if (num == (int) DVDMenu.DVDAdd)
-                    dvdData.DVDAdd();
+                if (num == (int) DVDMenu.AddDvd)
+                    dvdData.AddDvd();
                 //2.DVD 조회
-                else if (num == (int) DVDMenu.DVDInfoSearch)
-                    dvdData.DVDSearch();
+                else if (num == (int) DVDMenu.SearchDvdInfo)
+                    dvdData.SearchDvd();
                 //3.DVD 수정
-                else if (num == (int) DVDMenu.DVDUpdate)
-                    dvdData.DVDUpdate();
+                else if (num == (int) DVDMenu.UpdateDVd)
+                    dvdData.UpdateDvd();
                 //4.DVD 삭제
-                else if (num == (int) DVDMenu.DVDDelete)
-                    dvdData.DVDDelete();
+                else if (num == (int) DVDMenu.DeleteDvd)
+                    dvdData.DeleteDvd();
+               
                 //5.전체 DVD 정보 출력
-                else if (num == (int) DVDMenu.DVDPrintAll)
-                    dvdData.DVDPrintAll();
+                else if (num == (int) DVDMenu.PrintAllDvd)
+                    dvdData.PrintAllDvd();
                 //6. 메인메뉴
                 else if (num == (int) DVDMenu.MainMenu)
                     break;
@@ -85,7 +104,31 @@ namespace DVD_Store
 
         public void RentalAccess()
         {
-            throw new NotImplementedException();
+           //메뉴 오픈
+           Menu.RentalMainMenu();
+           //메뉴 선택
+           var num = int.Parse(Console.ReadLine());
+
+           while (true)
+           {
+               //1.대여
+               if (num == (int) RentalMenu.Rental)
+                   rentalData.RentDvd(customerData.GetCustomers(),dvdData.GetDvds());
+               //2.반납
+               else if (num == (int) RentalMenu.GetBackDvd)
+                   rentalData.GetBackDvd(customerData.GetCustomers(), dvdData.GetDvds());
+               //3.해당 DVD 대여 이력 조회
+               else if (num == (int) RentalMenu.SearchDVDRentalInfo)
+                   rentalData.SearchDVDRentlaInfo(dvdData.GetDvds());
+               //4.회원의 DVD 대여 이력 조회
+               else if (num == (int) RentalMenu.SearchCusRentalInfo)
+                   rentalData.SearchCusRentalInfo(customerData.GetCustomers());
+               //5.메인메뉴
+               else if (num == (int) RentalMenu.MainMenu)
+                   break;
+           }
+
+           
         }
     }
 }
