@@ -16,9 +16,14 @@ namespace DVD_Store.Data
             Customer cus = new Customer();
 
             Console.Write("회원 ID : ");
-            var cusId = int.Parse(Console.ReadLine());
+            var cusId = Console.ReadLine();
 
             cus = _customers.Select(x => x).FirstOrDefault(x => x.ID.Equals(cusId));
+
+
+            //cus = _customers.Select(x => x).Where(x => x.ID.Equals(cusId)).FirstOrDefault();
+
+            //cus = customers[0];
 
             if (cus == null)
             {
@@ -52,11 +57,13 @@ namespace DVD_Store.Data
             rental.DvdName = dvd.Name;
             //현재 날짜아니면 
             rental.RentalDate = DateTime.Today;
+
+            _rentalDatas.Add(rental);
             //직접 입력하는식으로
             //30일 이상 유효 날짜 검사 해야됨.
-//            Console.Write("대여날짜(ex 20190719 :");
-//            string rentData = Console.ReadLine();
-//            rental.RentalDate = DateTime.ParseExact(rentData, "yyyyMMdd", null);
+            //            Console.Write("대여날짜(ex 20190719 :");
+            //            string rentData = Console.ReadLine();
+            //            rental.RentalDate = DateTime.ParseExact(rentData, "yyyyMMdd", null);
 
 
             Console.WriteLine("대여 완료!");
@@ -93,16 +100,22 @@ namespace DVD_Store.Data
             string dvdId = null;
             Console.Write("이력 조회 하실 DVD :");
             dvdId = Console.ReadLine();
-            var query = _dvds.Select(x => x).FirstOrDefault(x => x.DVDNum.Equals(dvdId));
+
+            DVD dvd = new DVD();
+
+            dvd = _dvds.Select(x => x).FirstOrDefault(x => x.DVDNum.Equals(dvdId));
 
             //var query = _dvds.Select(x => x).Where(x => x.DVDNum.Equals(dvdId)).FirstOrDefault();
 
-            if (query == null)
+            if (dvd == null)
             {
                 Console.WriteLine("등록 되지 않은 DVD 입니다.");
                 return;
             }
-            List<Rental> rentals = _rentalDatas.Select(x=>x).Where(x => x.DvdNum.Equals(dvdId)) as List<Rental>; 
+            //var rentals = new List<Rental>();
+
+            var rentals = _rentalDatas.Select(x => x).Where(x => x.DvdNum.Equals(dvdId));
+
             foreach (var rental in rentals)
             {
                 Console.WriteLine(rental);

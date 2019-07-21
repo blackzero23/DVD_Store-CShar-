@@ -15,5 +15,12 @@ namespace DVD_Store.Entities
         public string DvdName { get; set; }
 
         public DateTime RentalDate { get; set; }
+
+
+        public override string ToString()
+        {
+            string ment = $"CusID : {CusId}\n RentalDate : {RentalDate.ToShortDateString()}";
+            return ment;
+        }
     }
 }

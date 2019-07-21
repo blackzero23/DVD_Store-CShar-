@@ -46,7 +46,13 @@ namespace DVD_Store
 
         public static void RentalMainMenu()
         {
-            throw new NotImplementedException();
+            Console.Clear(); // 클리어
+            Console.WriteLine("---메뉴---");
+            Console.WriteLine("1.대여");
+            Console.WriteLine("2.반납");
+            Console.WriteLine("3.해당 DVD 대여 이력");
+            Console.WriteLine("4.해당 고객 대여 이력");
+            Console.WriteLine("5.메인 메뉴");
         }
     }
 }
